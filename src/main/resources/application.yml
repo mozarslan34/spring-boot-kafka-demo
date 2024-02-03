@@ -1,0 +1,39 @@
+server:
+  port: 3175
+  forward-headers-strategy: framework
+spring:
+  application:
+    name: kafka-demo
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5434/abc?useSSL=false
+    password: postgres
+    hikari:
+      maximum-pool-size: 2
+  jpa:
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+        jdbc:
+          lab:
+            non_contexttual_creation: 'true'
+    hibernate:
+      ddl-auto: none
+  kafka:
+    topics:
+      demo: demo
+    consumer:
+      groupId: demo
+    bootstrap-servers: http://localhost:9092
+  servlet:
+    multipart:
+      max-request-size: 25MB
+      max-file-size: 10MB
+  jooq:
+    sql-dialect:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
